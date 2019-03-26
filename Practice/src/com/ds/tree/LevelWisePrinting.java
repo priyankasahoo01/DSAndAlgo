@@ -1,10 +1,10 @@
 package com.ds.tree;
 
-import java.util.LinkedList;
-
 import com.ds.tree.Tree.Node;
 
+
 public class LevelWisePrinting {
+	class Num {int num, power;}
     public void print(Node node, int level) {
         if (level == 0) {
             return;

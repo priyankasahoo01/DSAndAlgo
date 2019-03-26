@@ -1,5 +1,8 @@
 package com.problem.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FirstCommonAncestor {
     public static void main(String[] args) {
         Node node1 = new Node(1);
@@ -19,18 +22,52 @@ public class FirstCommonAncestor {
         test(node1, node1, node7);
 
         lca(node1, node4, node11);
+        System.out.println("---");
+        
+        test(node1, node5, node9);
+        
+        test(node1, node5, new Node(10));
+        
+        System.out.println(findLca(node1, 5, 9, new ArrayList<Integer>()));
     }
 
     // Without parent link
+    
+    public static int findLca(Node root, int a, int b, List<Integer> li) {
+    	int n1=-1,n2=-1;
+    	if(root.val == a || root.val == b) {
+    		n1=root.val;
+    		li.add(n1);
+    		n2 = findLca(root.left, a, b, li);
+    		if(n2 == -1) {
+    			n2 = findLca(root.right, a, b, li);
+    		}
+    		if(n2 == -1) {
+    			return -1;
+    		}else {
+    			return n1;
+    		}
+    	}
+    	n1=findLca(root.left, a, b,li);
+    	n2 = findLca(root.right, a, b,li);
+    	if(n1==-1 && n2==-1) {return -1;}
+    	if(li.contains(a) && li.contains(b)) {
+    		if(n1==-1) {return n2;}
+    		if(n2==-1) {return n1;}
+    		return root.val;
+    	}
+    	return -1;
+    	
+    }
 
     public static Node lca(Node root, Node n1, Node n2) {
         if (root == null) {
             return null;
         }
-        if (root.data == n1.data) {
+        if (root.val == n1.val) {
             return n1;
         }
-        if (root.data == n2.data) {
+        if (root.val == n2.val) {
             return n2;
         }
         Node searchLeft = lca(root.left, n1, n2);
@@ -52,10 +89,10 @@ public class FirstCommonAncestor {
 
     private static void test(Node root, Node node4, Node node11) {
         Node op = fca(node4, node11);
-        System.out.println("Ancestor of " + node4.data + " " + node11.data + " --> " + (op != null ? op.data : op));
+        System.out.println("Ancestor of " + node4.val + " " + node11.val + " --> " + (op != null ? op.val : op));
 
         op = lca(root, node4, node11);
-        System.out.println("Without parent link - Ancestor of " + node4.data + " " + node11.data + " --> " + (op != null ? op.data : op));
+        System.out.println("Without parent link - Ancestor of " + node4.val + " " + node11.val + " --> " + (op != null ? op.val : op));
     }
 
     public static Node fca(Node n1, Node n2) {

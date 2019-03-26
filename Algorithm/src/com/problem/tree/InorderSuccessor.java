@@ -33,7 +33,7 @@ public class InorderSuccessor {
 
     private static void test(Node node1) {
         Node op = getInorderSuccessor(node1);
-        System.out.println("successor of "+node1.data+" --> "+(op!=null?op.data:op));
+        System.out.println("successor of "+node1.val+" --> "+(op!=null?op.val:op));
     }
 
     public static Node getInorderSuccessor(Node node) {
@@ -83,7 +83,7 @@ public class InorderSuccessor {
             return;
         }
         inorder(node.left);
-        System.out.print(node.data + " ");
+        System.out.print(node.val + " ");
         inorder(node.right);
     }
 

@@ -57,7 +57,7 @@ public class TreeToArray {
             levelNodes = new ArrayList<>();
             map.put(level, levelNodes);
         }
-        levelNodes.add(root.data);
+        levelNodes.add(root.val);
         getAllNodes(root.left, map, level+1);
         getAllNodes(root.right, map, level+1);
         

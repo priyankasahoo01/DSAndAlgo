@@ -2,13 +2,13 @@ package com.problem.tree;
 
 public class Node {
 
-    int data;
+    int val;
     Node left;
     Node right;
     Node parent;
     
     Node(int data){
-        this.data = data;
+        this.val = data;
     }
     public Node left( int data){
         left = new Node(data);
